@@ -23,7 +23,7 @@ description              : # "An amazing website." #주석 처리 함. 20181221
 url                      : "https://sksggg123.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "sksggg123/sksggg123.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+teaser                   : /assets/images/github_posts.png # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
@@ -38,7 +38,7 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
   utterances:
-    theme                : "github-dark" # "github-light" (default), "github-dark"
+    theme                : # "github-light" (default), "github-dark"
 staticman:
   allowedFields          : # ['name', 'email', 'url', 'message']
   branch                 : # "master"
@@ -61,8 +61,8 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-search                   : # true, false (default)
-search_full_content      : # true, false (default)
+search                   : true # true, false (default)
+search_full_content      : true # true, false (default)
 search_provider          : # lunr (default), algolia, google
 algolia:
   application_id         : # YOUR_APPLICATION_ID
@@ -265,8 +265,11 @@ tag_archive:
 #     category: archive-taxonomy
 #     tag: archive-taxonomy
 #   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
+#     category: '/categories/:name/'
+#     tag: '/tags/:name/'
+#     year: '/:year/'
+#     month: '/:year/:month/'
+#     day: '/:year/:month/:day/'
 
 
 # HTML Compression
@@ -290,3 +293,12 @@ defaults:
       comments: true
       share: true
       related: true
+  #>>>>>>>>>>>>>>>>>>> 여기서부터 추가 됨
+  # _pages 부분입니다.
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  # >>>>>>>>>>>>>>>>>>>> 여기까지 추가 됨

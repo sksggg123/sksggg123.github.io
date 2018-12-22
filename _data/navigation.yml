@@ -2,8 +2,6 @@
 main:
 #  - title: "Github"
 #    url: https://github.com/sksggg123
-#  - title: "About"
-#    url: https://mmistakes.github.io/minimal-mistakes/about/
 #  - title: "Sample Posts"
 #    url: /year-archive/
 #  - title: "Sample Collections"
@@ -14,3 +12,5 @@ main:
     url: /tags/
   - title: "Category"
     url: /categories/
+  - title: "About"
+    url: /about/
