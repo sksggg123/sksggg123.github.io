@@ -7,6 +7,7 @@ tags:
     - Centos
     - Nginx
     - Tomcat
+published: false
 ---
 # Centos 7 + Nginx + Tomcat 구축 및 설정
 

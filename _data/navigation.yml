@@ -8,9 +8,9 @@ main:
 #    url: /collection-archive/
 #  - title: "Sitemap"
 #    url: /sitemap/
-  - title: "tag"
-    url: /tags/
   - title: "Category"
     url: /categories/
+  - title: "tag"
+    url: /tags/
   - title: "About"
     url: /about/

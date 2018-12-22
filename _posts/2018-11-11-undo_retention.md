@@ -5,6 +5,7 @@ category:
     - DB
 tags:
     - DB
+published: true
 ---
 
 #### 작업은 Toad For Oracle Tool을 사용하여 진행하였습니다.

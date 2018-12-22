@@ -1,3 +1,4 @@
+---
 layout: customize-posts
 title: "Maven DB(Mysql) 연동하기 "
 category:
@@ -7,6 +8,7 @@ tags:
     - Maven
     - Properties
     - Mysql
+published: false
 ---
 
 ># Maven Properties 설정

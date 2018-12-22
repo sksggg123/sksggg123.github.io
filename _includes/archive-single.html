@@ -23,11 +23,11 @@
           alt="">
       </div>
     {% endif %}
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title" itemprop="headline" style="border-bottom-style: unset; "></h2>
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
-        <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+        <a href="{{ post.url | relative_url }}" rel="permalink" style="text-decoration: none; ">* {{ title }}</a>
       {% endif %}
     </h2>
     <!-- {% if post.read_time %}
