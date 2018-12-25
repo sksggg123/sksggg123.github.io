@@ -1,7 +1,12 @@
 ---
 layout: customize-posts
 title: "markdown default page"
+date: 2018-12-21
 description: "마크다운(markdown) 간단한 개인적인 문법 정리 입니다."
+keywords:
+    - 마크다운
+    - 문법
+    - markdown
 category:
     - etc
 tags:
