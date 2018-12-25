@@ -1,6 +1,7 @@
 ---
 layout: customize-posts
-title: "Jekyll를 활용하여 깃허브 블로그 만들기"
+title: "지킬(Jekyll) 깃허브(github) 블로그 만들기"
+description: "지킬(Jekyll)을 이용하여 깃허브(github)에 정적(static) 블로그 만들기 입니다. 구축 및 사용 환경은 mac os 에서 작성하였습니다. 또한 블로그 구축, 커스터마이징을 간단하게 어느 설정 파일에서 수정 및 추가하면되는지 확인 하실 수 있으시며 내부기능은 github 댓글 API utterances 추가하였습니다."
 category:
     - etc
 tags:

@@ -1,6 +1,7 @@
 ---
 layout: customize-posts
 title: "undo_retention 이슈 및 작업 정리"
+description: "Oracle Undo Retention에 관련하여 접할 기회가 있어 작성하였으며, 회사내에서 작업 간 이슈사항이 발생하여 추가 작업 하였습니다. 간단하게 절차식으로 구성하였으며 추가 궁금증은 구글검색이 필요합니다."
 category:
     - DB
 tags:
