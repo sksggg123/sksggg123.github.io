@@ -23,8 +23,8 @@ tags:
     - algorithm
 published: true
 sitemap:
-changefreq: daily
-priority: 1.0
+    changefreq: daily
+    priority: 1.0
 ---
 
 ## 깊이/너비 우선 탐색(DFS/BFS) - 타겟 넘버
