@@ -17,8 +17,8 @@ tags:
     - github
 published: true
 sitemap: 
-changefreq: daily
-priority: 1.0
+    changefreq: daily
+    priority: 1.0
 ---
 
 >#### Mac OS 를 활용하여 구축하였습니다.
