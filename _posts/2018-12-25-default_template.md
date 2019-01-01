@@ -13,9 +13,9 @@ category:
 tags:
     - markdown
 published: false
-sitemap:
-changefreq: daily
-priority: 1.0
+sitemap: 
+    changefreq: daily
+    priority: 1.0
 ---
 
 ## 목차이름
