@@ -19,6 +19,9 @@ category:
 tags:
     - DB
 published: true
+sitemap: 
+    changefreq: daily
+    priority: 1.0
 ---
 
 #### 작업은 Toad For Oracle Tool을 사용하여 진행하였습니다.
