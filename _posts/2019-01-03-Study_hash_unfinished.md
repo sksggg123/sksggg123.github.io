@@ -1,6 +1,6 @@
 ---
 layout: customize-posts
-title: "(Hash)해시 - 완주하지 못한 선수"
+title: "해시(Hash) - 완주하지 못한 선수"
 date: 2019-01-03
 last_modified_at: 2019-01-03
 description: "(programmers)프로그래머스 코딩연습, (Hash)해시를 활용한 완주하지 못한 선수 찾기"
