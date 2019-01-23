@@ -2,8 +2,8 @@
 layout: customize-posts
 title: "개인공부 - 자바(객체지향프로그래밍)"
 date: 2019-01-21
-last_modified_at: 2019-01-22
-description: "남궁성님의 자바의정석을 읽고 중요하다고 생각하는 내용 정리 및 리마인드, 객체지향 프로그래밍에 대한 내용 chapter6입니다. jvm 메모리 구조에 대해서도 정리 함."
+last_modified_at: 2019-01-23
+description: "남궁성님의 자바의정석을 읽고 중요하다고 생각하는 내용 정리 및 리마인드, 객체지향 프로그래밍에 대한 내용 chapter6입니다. jvm 메모리 구조에 대해서도 정리 함. 자바의정석, 남궁성, 자바, java, 객체지향, 프로그래밍, JVM, 메모리구조, memory, 클래스, 인스턴스, 객체화, 클래스 변수, 인스턴스 변수, 초기화, 초기화 블럭, 명시적 초기화, 명시적, 생성자, 매개변수"
 keywords:
     - 자바의정석
     - 남궁성
@@ -14,6 +14,17 @@ keywords:
     - JVM
     - 메모리구조
     - memory
+    - 클래스
+    - 인스턴스
+    - 객체화
+    - 클래스 변수
+    - 인스턴스 변수
+    - 초기화 
+    - 초기화 블럭
+    - 명시적 초기화
+    - 명시적
+    - 생성자
+    - 매개변수
 category:
     - Study
 tags:
@@ -153,5 +164,286 @@ car2의 참조변수 하나를 추가 생성하여 ``car2 = car1`` 주소값을 
 - 메서드가 수행을 마치고나면 사용했던 메모리를 반환하고 스택에서 제거된다.
 - 호출스택의 제일 위에 있는 메서드가 현재 실행 중인 메서드이다.
 - 아래에 있는 메서드가 바로 위의 메서드를 호출한 메서드 이다.
+
+## 클래스 메서드(static메서드)와 인스턴스 메서드
+간단하게 클래스 메서드와 인스턴스 메서드르 구분 하자면 ``static``이 메서드 앞에 붙어있으면 **클래스 메서드** 붙어있지 않으면 **인스턴스 메서드**이다.  
+
+클래스 메서드도 클래스 변수처럼 객체를 생성하지 않고 ``'클래스이름.메서드이름'`` 으로 호출이 가능하다. 하지만 인스턴스 메서드는 객체를 생성하여 호출을 해야 한다.  
+
+- 클래스의 멤버변수 중 모든 인스턴스에 공통된 값을 유지해야하는 것이 있는지 살펴보고 있으면, static을 붙여준다.
+- 작성한 메서드 중에서 인스턴스 변수나 인스턴스 메서드를 사용하지 않는 메서드에 static을 붙일 것을 고려한다.
+
+예를 들면 java에서 사용하는 메서드 중 **Math.random()** 메서드가 있다.  
+이는 Math클래스의 random() 메서드를 java에서 호출시 객체화(인스턴스화)를 하지 않고 바로 호출하여 사용할 수 있다. 그 이유는 Math클래스에는 ``static``이 붙어 있기 때문이다. 
+아래는 Math클래스의 메서드 이다.
+
+```java
+public final class Math {
+
+    /**
+     * Don't let anyone instantiate this class.
+     */
+    private Math() {}
+
+    ``` 중략 ```
+    
+    private static final class RandomNumberGeneratorHolder {
+        static final Random randomNumberGenerator = new Random();
+    }
+
+     public static double random() {
+        return RandomNumberGeneratorHolder.randomNumberGenerator.nextDouble();
+    }
+
+    ``` 생략 ```
+```
+## 생성자(Constructor)
+wikipedia에 아래와 같이 정의가 되어있다.
+>객체 지향 프로그래밍에서 객체의 초기화를 담당하는 서브루틴을 가리킨다.   
+>생성자는 객체가 처음 생성될 때 호출되어 멤버 변수를 초기화하고, 필요에 따라 자원을 할당하기도 한다.  
+>객체의 생성 시에 호출되기 때문에 생성자라는 이름이 붙었다.
+
+**생성자**의 이름은 클래스의 이름과 같아야하며, 생성자는 리턴 값이 없다.  
+리턴 값이 없다는 것은 ``void``를 붙여야 하지만, 모든 생성자가 리턴값이 없으므로 ``void``가 생략할 수 있게 한 것이다.  
+
+생성자는 오버로딩이 가능하므로 하나의 클래스에 여러개의 생성자가 존재할 수 있다.  
+```java
+class Constructor {
+    Constructor() { // void가 생략된 기본적은 생성자
+
+    }
+
+    Constructor(int a) { // 매개변수가 있는 오버로딩을 통한 생성자
+
+    }
+}
+```
+
+참고로 생성자가 인스턴스를 생성하는 것이 아닌 연산자 **new**에 의해 인스턴스가 생성된다.  
+또한, 모든 클래스에는 반드시 하나 이상의 생성자가 정의되어 있어야 하지만 클래스를 생성할때 생성자를 크게 신경쓰지 않아도 되는 이유는 컴파일러가 ``기본 생성자``를 제공해 주었기 때문이다.  
+컴파일 시 java 파일에 생성자가 없을경우 ``기본 생성자``를 자동으로 추가하여 컴파일 한다.  
+
+1. 연산자 new에 의해 heap 메모리에 Constructor클래스 인스턴스가 생성
+2. 생성자 Constructor()가 호출되어 수행
+3. 연산자 new의 결과로, 생성된 Constructor인스턴스의 주소가 반환되어 참조변수 ct에 저장된다.
+
+```java
+Constructor    ct     =      new      Constructor();
+    클래스     참조변수         연산자        생성자
+```
+
+또한, 생성자를 활용할 수 있는 방법은 몇가지가 더 있다.  
+1. 생성자에 매개변수를 주어 인스턴스별로 각기 다른 값으로 초기화시킬수가 있다.  
+2. 생성자에서 다른 생성자 호출하기
+3. 생성자를 이용한 인스턴스 복사
+
+```java
+public class main {
+   
+    public static void main(String[] args){
+       
+       Constructor ct1 = new Constructor(1,2);
+       Constructor ct2 = new Constructor();
+       Constructor ct3 = new Constructor(ct1);
+       
+       System.out.println("ct1.a: " +ct1.a + " | ct1.b: "+ct1.b);
+       System.out.println("ct2.a: " +ct2.a + " | ct2.b: "+ct2.b);
+       System.out.println("ct3.a: " +ct3.a + " | ct3.b: "+ct3.b);
+    }
+}
+
+class Constructor {
+   int a;
+   int b;
+   
+   // 2번 생성자에서 다른 생성자 호출하기
+   Constructor() {
+      this(3,4);
+   }
+   
+   // 1번 생성자에 매개변수를 주어 인스턴스 별로 인스턴스 변수 다른값으로 초기화
+   Constructor(int a, int b) {
+      this.a = a;
+      this.b = b;
+   }
+   
+   // 3번 생성자를 이용한 인스턴스 복사
+   Constructor(Constructor ct) {
+      this.a = ct.a;
+      this.b = ct.b;
+   }
+}
+
+/**
+    출력 값
+    ct1.a: 1 | ct1.b: 2
+    ct2.a: 3 | ct2.b: 4
+    ct3.a: 1 | ct3.b: 2
+*/
+```
+
+위의 소스를 보면 총 3번의 객체화가 있다.  
+1번은 생성자를 통하여 객체화를 시킬때 매개변수로 '1', '2'를 주어 ct1을 객체화 시키며 인스턴스 변수인 'a', 'b'를 값을 주어 초기화 시켰다.  
+2번은 생성자를 통해 다른 생성자(오버로딩 개념)를 호출하여 인스턴스 변수인 'a', 'b'를 초기화 시킨 것이다.  
+3번은 객체화 시킨 참조변수 ```ct1(메모리주소)```를 매개변수로 주어 인스턴스를 복사한 것이다.  
+
+ct3이 객체화 된 순간 메모리에 새로운 주소가 할당되므로 복사 후 ct1의 인스턴스변수 'a', 'b' 데이터를 조작을 하여도 ct3의 'a', 'b'의 값은 변경되지 않는다.
+
+**주의사항**
+- 생성자의 이름으로 클래스이름 대신 this를 사용한다.
+- 한 생성자에서 다른 생성자를 호출항 떄는 반드시 첫 줄에서만 호출이 가능하다. 
+- this는 참조변수이다. 
+    - 인스턴스 자신을 가리키는 참조변수
+    - 인스턴스의 주소가 저장되어 있다. 
+    - 지역변수를 컨트롤 할때 사용
+- this()는 생성자이다.
+    - 같은 클래스의 다른 생성자를 호출할 떄 사용한다.
+
+## 변수의 초기화
+변수에는 ``멤버변수``와 ``지역변수``가 있으며, 멤버변수는 ``클래스변수, 인스턴스변수``로 나뉘어진다.  
+멤버변수는 초기화를 하지 않아도 default 값이 저장이 되지만 지역변수에는 초기화를 하지 않으면 사용할 수 없다.  
+#### 에러캡처 참고
+![캡처](/assets/images/blog/자바의정석_객체지향1_1.jpeg)
+
+멤버변수(클래스, 인스턴스 변수)의 초기화 방법은 3가지가 있다.
+1. 명시적 초기화
+2. 생성자
+3. 초기화 블럭
+    - 인스턴스 초기화 블럭
+    - 클래스 초기화 블럭
+
+3번 초기화 블럭방법을 알아보자. (1번과 2번은 대체로 많이 사용하는 방법)
+인스턴스 초기화 블럭은 ``{ }``을 사용하며, 클래스 초기화 방법은 ``static { }``을 사용한다.  
+클래스 초기화 블럭은 클래스가 메모리에 처음 로딩될 때 한번만 수행되며, 인스턴스 초기화 블럭은 생성자와 같이 인스턴스를 생성할 떄 마다 수행된다.  
+```java
+public class main {
+   
+    public static void main(String[] args){
+       
+       Constructor ct = new Constructor();
+       
+       System.out.println("ct.a: " +ct.a + " | ct.b: "+ct.b + " | ct.x: " + ct.x + " | ct.y: " + ct.y);
+    }
+}
+
+class Constructor {
+   int a = 0, b;
+   static int x, y;
+   
+   { // 인스턴스 초기화 블럭
+      a++;
+      b--;
+   }
+   
+   static { // 클래스 초기화 블럭
+      x = 0;
+      y--;
+   }
+}
+/**
+    출력 값
+    ct.a: 1 | ct.b: -1 | ct.x: 0 | ct.y: -1
+*/
+```
+
+위의 소스를 보면 Constructor클래스에 인스턴스변수 'a', 'b'가 있으며 클래스 변수 'x', 'y'가 있다.  
+인스턴스 초기화 블럭을 통해 인스턴스 변수 'a'를 1증감 시켰으며, 클래스변수 'x'를 0으로 초기화 시켜주었다.  
+
+인스턴스 초기화 블럭은 객체가 생성될때마다 수행을 하며 클래스 초기화 블럭은 클래스가 메모리에 올라가는 첫 번째만 되는 개념을 알아두면 된다.  
+
+아래는 위를 개념을 활용한 간단한 소스이다.
+
+```java
+public class main {
+   
+    public static void main(String[] args){
+       
+       Constructor ct1 = new Constructor();
+       System.out.printf("ct1은 %d번째 %s %s입니다.\n\n", ct1.x, ct1.b, ct1.a);
+       Constructor ct2 = new Constructor("매개변수 객체생성");
+       System.out.printf("ct2은 %d번째 %s %s입니다.\n\n", ct2.x, ct2.b, ct2.a);
+    }
+}
+
+class Constructor {
+   String a, b;
+   static int x=0;
+   
+   { // 인스턴스 초기화 블럭
+      x++; // 클래스 변수 초기화
+      this.a = "객체"; 
+   }
+   
+   Constructor() {
+      this.b = "기본생성";
+   }
+   
+   Constructor(String b) {
+      this.b = b;
+   }
+}
+/**
+    출력 값
+    
+    ct1은 1번째 기본생성 객체입니다.
+
+    ct2은 2번째 매개변수 객체생성 객체입니다.
+*/
+```
+
+이렇게 위의 인스턴스 초기화 블럭에서 클래스 변수 'x'를 1증갑시켜 몇번재 객체화한것인지 확인이 가능하다.  
+아래 소스는 객체화 하여 출력한 소스만 변형한 내용인데 참고삼아 알아두면 좋을 것 같다.  
+
+```java
+public class main {
+   
+    public static void main(String[] args){
+        Constructor ct1 = new Constructor();
+       System.out.printf("ct1은 %d번째 %s %s입니다.\n\n", ct1.x, ct1.b, ct1.a);
+       Constructor ct2 = new Constructor("매개변수 객체생성");
+       System.out.printf("ct2은 %d번째 %s %s입니다.\n\n", ct2.x, ct2.b, ct2.a);
+
+        Constructor ct3 = new Constructor();
+       Constructor ct4 = new Constructor("매개변수 객체생성");
+        System.out.printf("ct3은 %d번째 %s %s입니다.\n\n", ct1.x, ct1.b, ct1.a);
+       System.out.printf("ct4은 %d번째 %s %s입니다.\n\n", ct2.x, ct2.b, ct2.a);
+    }
+}
+
+class Constructor {
+   String a, b;
+   static int x=0;
+   
+   { // 인스턴스 초기화 블럭
+      x++; // 클래스 변수 초기화
+      this.a = "객체"; 
+   }
+   
+   Constructor() {
+      this.b = "기본생성";
+   }
+   
+   Constructor(String b) {
+      this.b = b;
+   }
+```
+
+이렇게 하면 출력된 결과가 아래와 같이 출력이 될까? 
+>ct1은 1번째 기본생성 객체입니다.  
+>ct2은 2번째 매개변수 객체생성 객체입니다.  
+>ct3은 3번째 기본생성 객체입니다.  
+>ct2은 4번째 매개변수 객체생성 객체입니다.  
+
+아니다. "ct3은 **4번쨰** 기본생성 객체입니다." 라고 출력이 된다.  
+그 이유는 ```static int x```때문이다. 클래스 변수는 클래스가 메모리에 올라갈때 같이 올라가며 같은 클래스 내에 어디에서는 공유가 된다.  
+인스턴스 초기화 블록을 통해 1증감처리가 **ct4** 까지 진행함에 따라 'x'의 값은 4로 되어이씅며 출력문을 통해 출력 시 4가 출력이 되는 것이다.  
+
+정상적인 출력은 아래와 같이 출력된다.
+>ct1은 1번째 기본생성 객체입니다.  
+>ct2은 2번째 매개변수 객체생성 객체입니다.  
+>ct3은 **4번째** 기본생성 객체입니다.  
+>ct2은 4번째 매개변수 객체생성 객체입니다.  
+
+**자바의 정석**을 읽으며 사소한 것이지만 놓친 부분들을 다시 볼수 있게되는 좋은경험이였다.  
 
 ###### 위의 모든 정리내용은 자바의 정석을 공부하며 복습차 정리한 내용입니다. 
