@@ -4,6 +4,9 @@ title: "LeetCode - Two Sum"
 date: 2019-01-24
 last_modified_at: 2019-01-24
 description: "코딩문제 알고리즘 leetCode two sum"
+header:
+    teaser: /assets/images/blog/leetcode/two_sum_3.jpeg
+    og_image: /assets/images/blog/leetcode/two_sum_3.jpeg
 keywords:
     - array
     - sum

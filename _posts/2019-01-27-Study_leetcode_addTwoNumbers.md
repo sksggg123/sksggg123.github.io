@@ -4,6 +4,9 @@ title: "LeetCode - Adad Two Numbers"
 date: 2019-01-27
 last_modified_at: 2019-01-27
 description: "코딩문제 알고리즘 leetCode add two numbers"
+header:
+    teaser: /assets/images/blog/leetcode/add_two_numbers.png
+    og_image: /assets/images/blog/leetcode/add_two_numbers.png
 keywords:
     - array
     - list

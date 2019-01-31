@@ -4,6 +4,9 @@ title: "완전탐색(Broute Force Search) - 모의고사"
 date: 2019-01-21
 last_modified_at: 2019-01-21
 description: "코딩문제 알고리즘 완전탐색을 통해 모의고사의 정답률이 높은 수험생 return"
+header:
+    teaser: /assets/images/blog/알고리즘_모의고사_채점결과.png
+    og_image: /assets/images/blog/알고리즘_모의고사_채점결과.png
 keywords:
     - 완전탐색
     - 탐색
