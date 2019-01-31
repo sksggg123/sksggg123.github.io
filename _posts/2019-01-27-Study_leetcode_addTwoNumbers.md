@@ -1,6 +1,6 @@
 ---
 layout: customize-posts
-title: "LeetCode - Adad Two Numbers"
+title: "LeetCode - Add Two Numbers"
 date: 2019-01-27
 last_modified_at: 2019-01-27
 description: "코딩문제 알고리즘 leetCode add two numbers"
