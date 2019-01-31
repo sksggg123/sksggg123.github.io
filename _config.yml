@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    :  "default" # "default",  "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "default" # "default",  "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
@@ -24,7 +24,7 @@ url                      : "https://sksggg123.github.io" # the base hostname & p
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "sksggg123/sksggg123.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : #/assets/images/github_posts.png # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-# breadcrumbs            : false # true, false (default)
+# breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
   provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
@@ -61,7 +61,7 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-search                   : # true, false (default)
+search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
 search_provider          : # lunr (default), algolia, google
 algolia:
@@ -70,20 +70,20 @@ algolia:
   search_only_api_key    : # YOUR_SEARCH_ONLY_API_KEY
   powered_by             : # true (default), false
 google:
-  search_engine_id       : # YOUR_SEARCH_ENGINE_ID
+  search_engine_id       : 007025621538124223410:im50gaeim5y # 20190131 YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
 # SEO Related
 google_site_verification :
-bing_site_verification   :
+bing_site_verification   : B5F00C6B3A456CBA964BD66F108862D8
 yandex_site_verification :
-naver_site_verification  :
+naver_site_verification  : 8f4e759ed38b61d9a09621ce5d261d70
 
 # Social Sharing
 twitter:
   username               :
 facebook:
-  username               :
-  app_id                 :
+  username               : sksggg123
+  app_id                 : 100001583537117
   publisher              :
 og_image                 : # Open Graph/Twitter default site image
 # For specifying social profiles
@@ -91,8 +91,7 @@ og_image                 : # Open Graph/Twitter default site image
 social:
   type                   : # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
-
+  links: "https://facebook.com/100001583537117" # An array of links to social media profiles
 # Analytics
 analytics:
   provider               : "google-gtag" # false (default), "google", "google-universal", "custom"
@@ -113,14 +112,14 @@ author:
     #  icon: "fas fa-fw fa-envelope-square"
     #  url: mailto:sksggg123@gmail.com
     #- label: "Website"
-    #  icon: "fas fa-fw fa-link"
+    #  icon: "fas fa-fw fa-lin"
     #  url: "https://sksggg123.github.io"
     #- label: "Twitter"
     #  icon: "fab fa-fw fa-twitter-square"
     #  url: "https://twitter.com/"
-    #- label: "Facebook"
-    #  icon: "fab fa-fw fa-facebook-square"
-    #  url: "https://facebook.com/devCommuter"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      url: "https://facebook.com/100001583537117"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/sksggg123"
@@ -134,9 +133,9 @@ footer:
     #- label: "Twitter"
     #  icon: "fab fa-fw fa-twitter-square"
       # url:
-    #- label: "Facebook"
-    #  icon: "fab fa-fw fa-facebook-square"
-      # url:
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      url: "https://facebook.com/100001583537117"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/sksggg123"
@@ -216,7 +215,7 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
+paginate: 10 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
