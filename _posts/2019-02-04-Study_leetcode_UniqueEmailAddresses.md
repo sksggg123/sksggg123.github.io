@@ -1,8 +1,8 @@
 ---
 layout: customize-posts
-title: "LeetCode - UniqueEmailAddresses"
-date: 2019-02-03
-last_modified_at: 2019-02-03
+title: "LeetCode - Unique Email Addresses"
+date: 2019-02-04
+last_modified_at: 2019-02-04
 description: "코딩문제 알고리즘 leetCode UniqueEmailAddresses"
 header:
     teaser: /assets/images/blog/leetcode/LeetCode.png
