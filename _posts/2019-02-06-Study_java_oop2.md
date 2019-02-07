@@ -1,12 +1,12 @@
 ---
 layout: customize-posts
 title: "개인공부 - 자바(객체지향프로그래밍II)"
-date: 2019-02-06
-last_modified_at: 2019-02-06
+date: 2019-02-07
+last_modified_at: 2019-02-07
 description: "남궁성님의 자바의정석을 읽고 중요하다고 생각하는 내용 정리 및 리마인드, 객체지향 프로그래밍에 대한 내용 chapter6입니다. jvm 메모리 구조에 대해서도 정리 함. 자바의정석, 남궁성, 자바, java, 객체지향, 프로그래밍, JVM, 메모리구조, memory, 클래스, 인스턴스, 객체화, 클래스 변수, 인스턴스 변수, 초기화, 초기화 블럭, 명시적 초기화, 명시적, 생성자, 매개변수"
 header:
-    teaser: /assets/images/blog/자바의정석_객체지향1_1.jpeg
-    og_image: /assets/images/blog/자바의정석_객체지향1_1.jpeg
+    teaser: /assets/images/blog/java-logo.png
+    og_image: /assets/images/blog/java-logo s.png
 keywords:
     - 자바의정석
     - 남궁성
@@ -34,11 +34,15 @@ keywords:
     - Modifier
     - 오버라이딩
     - Override
+    - 다형성
+    - Polymorphism
+    - casting
+    - cast
 category:
     - Study
 tags:
     - java
-published: false
+published: true
 sitemap:
     changefreq: daily
     priority: 1.0
@@ -49,7 +53,7 @@ sitemap:
 
 상속이란 기존의 클래스를 재사용하여 새로운 클래스를 작성하는 것이다. 선언은 상속받고자 하는 클래스를 **extends**와 함께 선언해주면 된다. 상속을 받게되면 부모클래스의 멤버변수를 그대로 자식클래스가 상속을 받게되어 사용가능하다.  
 
-자바에서 상속은 단일 상속밖에 되지 않는다. ```class singleExtends extends A``` 으로 정의할 수 있지만 ```class singleExtends extends A, B``` 와 같이 다중으로 상속을 할 수가 없다. 만일 다중상속이 필요할 경우 아래와 같이 표현 할 수는 있다.  
+자바에서 상속은 단일 상속밖에 되지 않는다. ``class singleExtends extends A`` 으로 정의할 수 있지만 ``class singleExtends extends A, B`` 와 같이 다중으로 상속을 할 수가 없다. 만일 다중상속이 필요할 경우 아래와 같이 표현 할 수는 있다.  
 
 ```java
 class Computer {
@@ -171,5 +175,254 @@ public class Main() {
     - abstract메서드는 자식클래스에서 구현해주어야 하는데 접근 제어자가 private이면, 자식 클래스에서 접근할 수 없기 때문이다.
 4. 메서드에 private와 final을 같이 사용할 필요는 없다.
     - 접근 제어자가 private인 메서드는 오버라이딩 될 수 없기 때문이다. 이 둘 중 하나만 사용해도 의미가 충분하다.
+
+## 다형성(Polymorphism)
+
+상속과 함께 객체지향개념의 중요한 특징 중의 하나인 다형성은 ``"여러 가지 형태를 가질 수 있는 능력"``을 의미하며, 자바에서는 한 타입의 참조변수로 여러 타입의 객체를 참조할 수 있도록 함으로써 다형성을 프로그램적으로 구현 하였다.
+
+구체적으로 이야기를 하면 **조상클래스 타입의 참조변수로 자손클래스의 인스턴스를 참조**할 수 있도록 한 것이다.
+
+보통 우리는 하나의 클래스를 인스턴스화 할때는 동일한 타입으로 인스턴스화를 하며 사용하고 있다. 보통으로는 인스턴스의 타입과 참조변수의 타입을 일치하는 것이 보통이지만 예를 들면 ``Parent p = new Parent();, Child c = new Child();``와 같이 사용하지만, ``Parent p = new Child();``와 같이 사용할 수 있다는 의미이다. (Child 클래스가 Parent 클래스를 상속받았다는 조건) 
+
+근데 여기서 주의할 점은 자식클래스타입의 참조변수로 부모클래스타입의 인스턴스를 참조하는 것은 존재하지 않는 멤버를 사용할 수 있기에 Java자체로 **허용하지 않는다.** 참조변수가 사용할 수 있는 멤버의 개수는 인스턴스의 멤버개수보다 같거나 적어야 한다.
+>부모클래스타입의 참조변수로 자식클래스타입의 인스턴스를 참조할 수 있다.   
+>자식클래스타입의 참조변수로 부모클래스타입의 인스턴스를 참조할 수 없다.  
+>각 클래스의 멤버변수의 개수 차이를 보면 부모클래스를 상속받았기에 자식클래스가 멤버변수가 ``>=`` 이기 때문이다.
+
+### 참조변수의 형변환
+
+기본형 변수와 같이 참조변수도 형변환이 가능하다. 단, 상속관계에 있는 클래스 사이에서만 가능하다.
+>자식클래스타입 -> 부모클래스타입 : 업캐스팅 -> 형변환 생략가능  
+>부모클래스타입 -> 자식클래스타입 : 다운캐시팅 -> 형변환 생략불가능
+
+```java
+class Main {
+	
+	public static void main(String[] args) {
+		
+		
+		// Case1 => Parent
+		Parent parent = new Parent();
+		parent.overrideMethod();
+		
+		// Case2 => 참조변수: Parent / 인스턴스: Child (부모변수 - 자식인스턴스)
+		Parent parentChild1 = new Child();
+		parentChild1.overrideMethod();
+		
+		// Case3 => Child
+		Child child = new Child();
+		child.overrideMethod();
+		
+		// Case4 => 참조변수: Child / 인스턴스: Parent (자식변수 - 부모인스턴스)
+		Child childParent1 = (Child) new Parent(); // 부모클래스 인스턴스화 에러 (ClassCastException)
+		childParent1.overrideMethod();
+		
+		// Case5 => 참조변: Child / 참조변수: Parent / child -> parent -> child 는 가능
+		Child childParent2 = null;
+		Parent parentToChild = null;
+		Child tempChild = new Child();
+		parentToChild = tempChild;
+		childParent2 = (Child) parentToChild;
+		childParent2.overrideMethod();
+	}
+}
+
+class Parent {
+    int p = 10; // 멤버변수 총 1개 (자기 자신 변수 p)
+	void overrideMethod() {
+		System.out.println("Override Parent Method");
+	}
+}
+
+class Child extends Parent {
+    int c = 20; // 멤버변수 총 2개 (Parent클래스의 멤버변수 p 를 갖고 있음)
+	void overrideMethod() {
+		System.out.println("Override Child Method");
+	}
+}
+
+/**
+    출력 결과
+    Override Parent Method
+    Override Child Method
+    Override Child Method
+    Case4는 캐스팅 오류!!!
+    Override Child Method
+*/
+```
+
+다형성과 참조변수의 형변환에 대해 위의 소스코드로 정리할 수 있다. 총 Case는 5가지로 정리가 되는데 각각의 상태는 아래와 같다.
+1. Case1: 일반적인 부모클래스 인스턴스 화 
+    - 메모리에 참조변수 Parent로 선언 후 인스턴스 화로 초기화 된 상태
+2. Case2: 메모리에 참조변수 Parent로 선언 후 Child객체로 인스턴스 화 
+    - 참조변수는 Parent로 멤버변수 가 ``p``하나 뿐임
+    - 참조변수가 애초에 Parent기에 ``parent.c``를 할수가 없음 (문제소지가 없음)
+3. Case3: 일반적인 자식클래스 인스턴스 화
+    - 메모리에 참조변수 Child로 선언 후 인스턴스 화로 초기화 된 상태
+4. Case4: 메모리에 참조변수 Child로 선언 후 Parent객체로 인스턴스 화
+    - 참조변수는 Child로 멤버변수 가 ``p 와 c``를 갖고있음
+    - 참조변수가 Child이기에 ``child.p 와 child.c``를 사용할 수 가있는 상태이다. 여기서 Parent객체로 인스턴스 화 할 경우 멤버변수 ``child.c``를 모르기에 컴파일 시 문제
+5. Case5: Case2번의 다형성을 사용하여 참조변수의 형변환을 하였다.
+    - 참조변수 Parent에 Child를 인스턴스 화
+    - 참조변수 Child에 Child로 인스턴스화 한 참조변수 Parent를 캐스팅
+
+처음 책을보며 이부분은 이해가 가지않아 Case를 나누어 코딩을 해보니 위와 같은 결과가 있었다. 형변환은 참조변수의 타입을 변환하는 것이지 인스턴스를 변환하는 것이 아니다. 이미 인스턴스화 한 참조변수를 다시 형변환 할 수 없는것도 그 이유이고, 참조하고 있는 인스턴스에서 사용할 수 있는 멤버의 범위를 조절하는 것 뿐이다. 정리하자면 아래와 같다.
+
+>참조변수간의 형변환은 양방향으로 자유롭게 수행될수 있다.  
+>참조변수가 참조하고 있는 인스턴스의 자손타입으로 형변환을 하는 것은 허용되지 않는다.
+
+## instanceof 연산자
+
+기본적으로 instanceof 연산자는 좌측에는 ``참조변수`` 우측에는 ``타입``을 넣어 사용한다.
+
+현업에서 코딩을 할 경우 부모클래스의 객체를 받아 자식클래스로 형변환을 할때가 있다. 예를 들면 외부와의 인터페이스시 공통으로 받는 데이터들에 대해서는 부모클래스에 정의를하고 일부 몇몇의 데이터가 추가로 올 수도 있는 경우의 자식클래스로 상속받아 확장을 한다. 이때 일반적으로 부모클래스로 데이터를 받아 인터페이스별 처리 로직을 할때 형변환 유무로 처리를 했던 경우도 있었다.
+
+그때 instanceof 연산자를 사용하여 분기처리로 하였으며 해당 값은 boolean값을 return해준다. true의 값을 얻었다면 형변환이 가능하다는 의미이다. 부모클래스타입의 참조변수로 자손타입의 인스턴스를 참조할 수 있기 때문에 아래의 예제소스는 Parent와 Child를 instanceof 연산자를 통해 분기처리한 소스이다.
+
+```java
+class Main {
+	
+	public static void main(String[] args) {
+		
+		
+		// Parent
+		Parent parent = new Parent();
+		parent.overrideMethod();
+		
+		// Child
+		Child child = new Child();
+		child.overrideMethod();
+		
+		if(parent instanceof Child) { // DOWN-Casting
+			System.out.println("Parent -> Child로 형변환 가능!");
+		}
+		
+		if(child instanceof Parent) { // UP-Casting
+			System.out.println("Child -> Parent로 형변환 가능!");
+		}
+		
+	}
+}
+
+class Parent {
+	void overrideMethod() {
+		System.out.println("Override Parent Method");
+	}
+}
+
+class Child extends Parent {
+	void overrideMethod() {
+		System.out.println("Override Child Method");
+	}
+}
+/**
+    출력 결과
+    Child -> Parent로 형변환 가능!
+*/
+```
+
+아래의 예제 소스는 다형성 개념을 활용한 예제이다. 전체적으로 정리한 내용이다.  
+
+알아둬야할 개념은 **클래스변수 static**은 새로운 참조변수에 인스턴스화를 하여도 기존의 값이 서로 공유된다. 최초 메모리 로딩 시 올라가는 변수 이기에 인스턴스끼리 공유할 수 있다. 그리고 Parent클래스의 ``List<Child>`` 이다. 해당 값은 참조변수의 형변환 가능한 것을 활용한 내용인데 Boy와 Girl 클래스는 Child 클래스를 상속받아 확장 되었기에 **컬랙션타입을 Child**로 정의하여도 Boy와 Girl을 받을 수 있다. Parent Method인 **setChild(Child child)**도 매개변수를 Child로 정의하여 Boy와 Girl타입을 받을 수가 있다. 아래 소스에서는 위의 3가지만 기억하면 된다.
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+	
+	public static void main(String[] args) {
+		
+		// System.out.println("첫 번째 가족 (boy1-1, boy1-2, girl1-3)");
+		
+		Parent parent1 = new Parent();
+		Boy boy1_1 = new Boy("boy1-1");
+		Boy boy1_2 = new Boy("boy1-2");
+		Girl girl1_3 = new Girl("girl1-3");
+		
+		parent1.setChild(boy1_1);
+		parent1.setChild(boy1_2);
+		parent1.setChild(girl1_3);
+		
+		// System.out.println("두 번째 가족 (boy2-1, girl2-2, girl2-3)");
+		
+		Parent parent2 = new Parent();
+		Boy boy2_1 = new Boy("boy1-1");
+		Girl girl2_2 = new Girl("girl2-2");
+		Girl girl2_3 = new Girl("girl1-3");
+		
+		parent2.setChild(boy2_1);
+		parent2.setChild(girl2_2);
+		parent2.setChild(girl2_3);
+		
+		
+		System.out.println("첫 번째 가족의 아빠: " + parent1.father + " 엄마: " + parent1.mother + " 그들의 자식은..");
+		for(Child child : parent1.childrens) {
+			System.out.println("이름: " +child.name + " 성별: " + child.sex);
+		}
+		
+		System.out.println("두 번째 가족의 아빠: " + parent2.father + " 엄마: " + parent2.mother + " 그들의 자식은..");
+		for(Child child : parent2.childrens) {
+			System.out.println("이름: " +child.name + " 성별: " + child.sex);
+		}
+	}
+}
+
+class Parent {
+	static int NUM = 1;
+	String father;
+	String mother;
+	List<Child> childrens = new ArrayList<Child>();
+	
+	Parent() {
+		this(NUM+" Father", NUM+" Mother");
+		NUM++;
+	}
+	
+	Parent(String father, String mother) {
+		this.father = father;
+		this.mother = mother;
+	}
+	
+	void setChild(Child child) {
+		this.childrens.add(child);
+	}
+	
+}
+
+class Child {
+	String name;
+	String sex;
+}
+
+class Boy extends Child {
+	
+	Boy (String name) {
+		this.name = name;
+		this.sex = "남";
+	}
+}
+
+class Girl extends Child {
+	
+	Girl(String name) {
+		this.name = name;
+		this.sex = "여";
+	}
+}
+
+/**
+    출력 결과
+    첫 번째 가족의 아빠: 1 Father 엄마: 1 Mother 그들의 자식은..
+    이름: boy1-1 성별: 남
+    이름: boy1-2 성별: 남
+    이름: girl1-3 성별: 여
+    
+    두 번째 가족의 아빠: 2 Father 엄마: 2 Mother 그들의 자식은..
+    이름: boy1-1 성별: 남
+    이름: girl2-2 성별: 여
+    이름: girl1-3 성별: 여
+*/
+```
 
 ###### 위의 모든 정리내용은 자바의 정석을 공부하며 복습차 정리한 내용입니다. 
