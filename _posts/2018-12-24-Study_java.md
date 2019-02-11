@@ -1,6 +1,6 @@
 ---
 layout: customize-posts
-title: "개인공부 - 자바란?"
+title: "자바의정석 - 자바란?"
 date: 2018-12-24
 last_modified_at: 2018-12-25
 description: "2018.12 4째주 공부내용. java 시작. 자바의 특징, 캡슐화, 상속화, 다형성, jvm 공부하며 기록삼아 정리한 내용"

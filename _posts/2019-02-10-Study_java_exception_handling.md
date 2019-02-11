@@ -1,6 +1,6 @@
 ---
 layout: customize-posts
-title: "개인공부 - 자바(예외처리 Exception)"
+title: "자바의정석 - 자바(예외처리 Exception)"
 date: 2019-02-10
 last_modified_at: 2019-02-10
 description: "남궁성님의 자바의정석을 읽고 중요하다고 생각하는 내용 정리 및 리마인드, 객체지향 프로그래밍에 대한 내용 chapter7입니다. jvm 메모리 구조에 대해서도 정리 함. 자바의정석, 남궁성, 자바, java, 객체지향, 프로그래밍, JVM, 메모리구조, memory, 클래스, 인스턴스, 객체화, 클래스 변수, 인스턴스 변수, 초기화, 초기화 블럭, 명시적 초기화, 명시적, 생성자, 매개변수, 추상클래스, abstract, 이너클래스, innerclass, 익명클래스, anonymous, 예외처리, 예외, try, catch, exception, throw, finaly"
@@ -134,7 +134,7 @@ throw e;
 
 Checked Exception은 컴파일 단계에서 확인 가능한 예외이다. 다른 말로는 ``"Compiletime Exception"``이라고 한다. Checked Exception은 try/catch로 감싸거나 throw로 던지는 처리를 반드시 해주어야 한다. 예외처리를 컴파일러가 강제하는 것이다.
 
-Unchecked Exception은 컴파일 단계에서 확인불가하며, 프로그램의 로직 실행중 발생한다. 다른 말로는 ``"Runtime Exception"``이라고도 한다. Unchecked Exception은 명시적인 예외처리를 하지 않아도 된다. 미리 예측하지 못했던 상황에서 발생하는 예외가 아니기 떄문에 굳이 로직으로 처리를 할 필요가 없도록 만들어져 있다.
+Unchecked Exception은 컴파일 단계에서 확인불가하며, 프로그램의 로직 실행중 발생한다. 다른 말로는 ``"Runtime Exception"``이라고도 한다. Unchecked Exception은 명시적인 예외처리를 하지 않아도 된다. 미리 예측하지 못했던 상황에서 발생하는 예외가 아니기 때문에 굳이 로직으로 처리를 할 필요가 없도록 만들어져 있다.
 
 #### 참고로 Error와 그 자손도 Unchecked Exception이다. try/catch로 처리할 수 없기 때문이다.
 
