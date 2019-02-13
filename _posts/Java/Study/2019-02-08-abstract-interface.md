@@ -93,7 +93,7 @@ abstract class SampleClass2 extends AbstractClassSample {
 }
 ```
 
-추상클래스를 보았을때는 굳이(?) class를 생성할때 ``abstrac``를 붙여주어 작성해야 할까? 라는 의문이 들 수가 있다. 기본적은로 class를 작성하여 필요한 곳에 extends를 하여 사용하여도 같은 의미겠으나 abstract를 붙여줌으로써 상속받은 class에서 추상메서드의 구현을 강제할 수 있기에 필수 공통부분을 구현해야할 경우 사용에 적합하다.
+추상클래스를 보았을때는 굳이(?) class를 생성할때 ``abstract``를 붙여주어 작성해야 할까? 라는 의문이 들 수가 있다. 기본적은로 class를 작성하여 필요한 곳에 extends를 하여 사용하여도 같은 의미겠으나 abstract를 붙여줌으로써 상속받은 class에서 추상메서드의 구현을 강제할 수 있기에 필수 공통부분을 구현해야할 경우 사용에 적합하다.
 
 ## 인터페이스(interface)
 
