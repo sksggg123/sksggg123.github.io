@@ -11,7 +11,7 @@ keywords:
     - blog
     - 블로그
 category:
-    - etc
+    - Etc
 tags:
     - Jekyll
     - github

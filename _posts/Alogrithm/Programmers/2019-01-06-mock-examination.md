@@ -21,9 +21,9 @@ keywords:
     - 모의고사
     - 프로그래머스
 category:
-    - Study
+    - Algorithm
+    - Programmers
 tags:
-    - java
     - algorithm
 published: true
 sitemap:

@@ -17,9 +17,9 @@ keywords:
     - 알고리즘
     - 재귀
 category:
-    - Study
+    - Algorithm
+    - Programmers
 tags:
-    - java
     - algorithm
 published: true
 sitemap:

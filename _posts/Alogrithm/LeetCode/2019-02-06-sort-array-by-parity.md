@@ -27,9 +27,9 @@ keywords:
     - hash
     - sort
 category:
-    - Study
+    - Algorithm
+    - LeetCode
 tags:
-    - java
     - algorithm
 published: true
 sitemap:

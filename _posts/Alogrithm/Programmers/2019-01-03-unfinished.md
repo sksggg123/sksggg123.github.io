@@ -11,9 +11,9 @@ keywords:
     - 알고리즘
     - algorithm
 category:
-    - Study
+    - Algorithm
+    - Programmers
 tags:
-    - java
     - algorithm
 published: true
 sitemap: 

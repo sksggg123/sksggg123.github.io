@@ -45,6 +45,7 @@ keywords:
     - 익명클래스
     - anonymous
 category:
+    - Java
     - Study
 tags:
     - java
