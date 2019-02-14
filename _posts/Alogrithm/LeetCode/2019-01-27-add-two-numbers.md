@@ -3,7 +3,7 @@ layout: customize-posts
 title: "LeetCode - Add Two Numbers"
 date: 2019-01-27
 last_modified_at: 2019-01-27
-description: "코딩문제 알고리즘 leetCode add two numbers"
+description: "코딩문제 알고리즘 leetCode add two numbers LinkedList를 활용하여 풀어야하는 문제이다."
 header:
     teaser: /assets/images/blog/leetcode/LeetCode.png
     og_image: /assets/images/blog/leetcode/LeetCode.png
