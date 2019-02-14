@@ -7,6 +7,10 @@ tags:
     - Jekyll github
 ---
 
+[![Build Status](https://travis-ci.org/sksggg123/sksggg123.github.io.svg?branch=master)](https://travis-ci.org/sksggg123/sksggg123.github.io)
+
+:fire: sksggg123.github.io :fire:
+
 >#### Mac OS 를 활용하여 구축하였습니다.
 
 ## Github Blog(Jekyll) 만들게 된 이유
