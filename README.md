@@ -7,8 +7,6 @@ tags:
     - Jekyll github
 ---
 
-[![Build Status](https://travis-ci.org/sksggg123/sksggg123.github.io.svg?branch=master)](https://travis-ci.org/sksggg123/sksggg123.github.io) ![](https://img.shields.io/github/commits-since/sksggg123/sksggg123.github.io/3.4.7.svg?label=commit&style=flat)
-
 :fire: sksggg123.github.io :fire:
 
 >#### Mac OS 를 활용하여 구축하였습니다.
