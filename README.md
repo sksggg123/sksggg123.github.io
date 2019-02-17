@@ -7,6 +7,8 @@ tags:
     - Jekyll github
 ---
 
+[![HitCount](http://hits.dwyl.io/sksggg123/sksggg123/sksggg123.github.io.svg)](http://hits.dwyl.io/sksggg123/sksggg123/sksggg123.github.io) 
+
 :fire: sksggg123.github.io :fire:
 
 >#### Mac OS 를 활용하여 구축하였습니다.
