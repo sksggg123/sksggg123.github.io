@@ -2,8 +2,8 @@
 layout: customize-posts
 title: "자바의정석 - 자바(lang Package, Uitl Class)"
 date: 2019-02-16
-last_modified_at: 2019-02-16
-description: "남궁성님의 자바의정석을 읽고 중요하다고 생각하는 내용 정리 및 리마인드, 객체지향 프로그래밍에 대한 내용 chapter7입니다. jvm 메모리 구조에 대해서도 정리 함. 자바의정석, 남궁성, 자바, java, 객체지향, 프로그래밍, JVM, 메모리구조, memory, 클래스, 인스턴스, 객체화, 클래스 변수, 인스턴스 변수, 초기화, 초기화 블럭, 명시적 초기화, 명시적, 생성자, 매개변수, 추상클래스, abstract, 이너클래스, innerclass, 익명클래스, anonymous, 예외처리, 예외, try, catch, exception, throw, finaly java.lang package, util class, object, String, literal, 리터럴"
+last_modified_at: 2019-02-17
+description: "남궁성님의 자바의정석을 읽고 중요하다고 생각하는 내용 정리 및 리마인드, 객체지향 프로그래밍에 대한 내용 chapter7입니다. jvm 메모리 구조에 대해서도 정리 함. 자바의정석, 남궁성, 자바, java, 객체지향, 프로그래밍, JVM, 메모리구조, memory, 클래스, 인스턴스, 객체화, 클래스 변수, 인스턴스 변수, 초기화, 초기화 블럭, 명시적 초기화, 명시적, 생성자, 매개변수, 추상클래스, abstract, 이너클래스, innerclass, 익명클래스, anonymous, 예외처리, 예외, try, catch, exception, throw, finaly java.lang package, util class, object, String, literal, 리터럴, Objects, wrapper, StringBuffer, String"
 header:
     teaser: /assets/images/blog/java-logo.png
     og_image: /assets/images/blog/java-logo.png
@@ -51,12 +51,17 @@ keywords:
     - catch
     - finaly
     - throw
+    - Object
+    - equals
+    - wrapper
+    - String
+    - StringBuffer
 category:
     - Java
     - Study
 tags:
     - java
-published: false
+published: true
 sitemap:
     changefreq: daily
     priority: 1.0
@@ -200,5 +205,92 @@ a|b|c
 */
 ```
 
+## StringBuffer 클래스
+
+String 클래스의 경우 변경 불가능한 클래스라고 하였다. 하지만 StringBuffer 클래스의 경우는 그렇지 않다 내부적으로 문자열 편집을 위한 버퍼를 가지고 있으며, StringBuffer인스턴스를 생성할 때 그 크기를 지정할 수 있다. 크기를 별도로 선언하지 않을경우 기본적으로 16자로 생성을 한다. 내부적으로 StringBuffer 클래스는 아래와 같이 구현되어있다.
+```java
+public final class StringBuffer extends AbstractStringBuilder implements java.io.Serializable, CharSequence
+{
+    private char[] value;
+
+    public StringBuffer() {
+        super(16);
+    }
+
+    .......
+}
+```
+
+참고로 StringBuffer 클래스는 equals 메서드를 오버라이딩하지 않아서 StringBuffer 클래스의 equals메서드를 사용해도 ``등가비교연산자(==)``로 비교한 것 과 같은 결과를 얻는다. 만일 문자열 비교하기 위해서는 StringBuffer인스턴스에 ``toString()``을 호출해서 String인스턴스를 얻은 다음 equals메서드를 사용해서 비교해야 한다.
+```java
+StringBuffer sb1 = new StringBuffer("abc");
+StringBuffer sb2 = new StringBuffer("abc");
+
+System.out.println(sb1==sb2); // false
+System.out.println(sb1.equals(sb2)); // false
+
+System.out.println(sb1.toString().equals(sb2.toString())); // true
+```
+## 래퍼(wrapper) 클래스 
+
+자바에서는 8개의 기본형(primitive type)이 있다. 그 외에는 모두 객체이다. 이렇게 기본형 type을 매개변수로 사용시 객체로 요구할떄, 기본형 값이 아닌 객체로 저장해야할따, 객체간의 비교가 필요할ㄷ 때 등등의 경우에는 기본형 값들을 객체로 변환하여 작업을 수행해야한다. 이때 사용하는것이 ``래퍼(wrapper)`` 클래스 이다. 
+
+|기본형|래퍼클래스|생성자|활용|
+|-|-|-|-|
+|boolean|Booleand|Boolean(boolean value)|Boolean b = new Boolean(true);|
+|char|Character|Character(char value)|Character c = new Character('a');|
+|byte|Byte|Byte(byte value)|Byte b = new Byte(10);|
+|short|Short|Short(short value)|Short s = new Short(10);|
+|int|Integer|Integer(int value)|Integer i = new Integer(10);|
+|long|Long|Long(long value)|Long l = new Long(10);|
+|float|Float|Float(float value)|Float f = new Float(10.0);|
+|double|Double|Double(double value)|Double d = new Double(10.0);|
+
+래퍼 클래스의 경우 모두 ``equals()`` 메서드가 오버라이딩되어 있어서 주소값이 아닌 실제 객체가 가지고있는 value값을 비교할 수 있다. 참고로 Integer객체에 비교연산자를 사용할 수 없다 비교를 하려면 compareTo() 메서드를 사용해야 한다.
+```java
+Integer i1 = new Integer(10);
+Integer i2 = new Integer(20);
+
+System.out.println(i1.equals(i2)); // false
+i2 = 10;
+
+System.out.println(i1.equals(i2)); // true
+System.out.println(i1.compareTo(i2)); // 0
+```
+
+래퍼 클래스의 ``'타입.parse타입(String s)'``형식의 메서드와 ``'타입.valueOf(String s)'`` 메서드는 차이가 있다. 전자의 parseInt와 같이 사용하면 기본형을 반환하여 Integer.valueOf와 같이 사용하면 래퍼 클래스를 반환한다.
+
+## Objects 클래스
+Object클래스의 보조 클래스로 모든 메서드가 ``static``으로 되어있다. 객체의 비교나 Null 체크에 유용하다. 예를 들면 ``Object.isNull(object obj)`` 으로 사용하면 된다. ``requireNonNull()``메서드는 해당 객체가 널이 아니어야 하는 경우에 사용한다. 만일 객체가 널이면, NullPointerException()을 발생시킨다. 아래는 ``Integer i1 = new Integer(10)``으로 인스턴스화 한 Integer 객체로 확인한 사항이다.
+```java
+System.out.println(Objects.isNull(i1));
+System.out.println(Objects.nonNull(i1));
+
+System.out.println(Objects.requireNonNull(i1));
+i1 = null;
+System.out.println(Objects.requireNonNull(i1));
+
+/**
+출력 결과
+
+false
+true
+10
+Exception in thread "main" java.lang.NullPointerException
+	at java.util.Objects.requireNonNull(Objects.java:203)
+	at Solution.main(main.java:40)
+*/
+```
+
+참고로 Object클래스의 equals와 Objects클래스의 equals 두 클래스에 메서드가 있는데 차이점이 있다. 전자인 Object클래스의 equals의 경우 Null 체크를 해주어야 하지만 Objects클래스의 equals는 Null 체크를 안해도 된다.
+```java
+if(a != null && a.equals(b)) {
+    ...
+}
+
+if(Objects.equals(a, b)) {
+    ...
+}
+```ss
 
 ###### 위의 모든 정리내용은 자바의 정석을 공부하며 복습차 정리한 내용입니다. 
