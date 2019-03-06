@@ -726,6 +726,120 @@ public static void main(String[] args) {
 */
 ```
 
+## HashMap과 HashTable
+
+HashMap은 Map을 구현했으므로 Map의 특징인 Key, Value 쌍으로 하나의 데이터로 저장한다. 그리고 ``해싱``을 사용하기 떄문에 많은 양의 데이터를 검색하는데 있어서 뛰어난 성능을 보인다. HashMap은 Entry라는 내부 클래스를 정의하고, 다시 Entry타입의 배열을 선언하고 있다. Key와 Value은 별개의 값이 아니라 서로 관련된 값이기 떄문에 각각의 배열로 선언하기 보다는 하나의 클래스로 정의해서 하나의 배열로 다루는 것이 데이터의 무결성적인 측면에서 더 바람직하기 때문인다.
+
+```java
+public class HashMap extends AbstractMap implements Map, Cloneable, Serializable {
+    transient Entry[] table;
+    ...
+    static class Entry implements Map.Entry {
+        final Object key;
+        Object Value;
+        ...
+    }
+}
+```
+
+기본적인 Map의 사용은 아래와 같다. 
+
+```java
+Map<Object, Object> map = new HashMap<>();
+map.put(key, value);
+map.get(key);
+
+// Key를 Iterator로 사용
+Iterator it = map.keySet().iterator();
+while(it.hasNext()) {
+    Object key = it.next();
+}
+
+// Entry를 Iterator로 사용
+Iterator it = map.entrySet().iterator();
+while(it.hasNext()) {
+    Map.Entry e = (Map.Entry) it.next();
+    Object key = e.getKey();
+    Object value = e.getValue();
+}
+
+// Collection을 Iterator()로 사용
+Collection values = map.values();
+Iterator it = map.values().iterator();
+while(it.hasNext()) {
+    Object value = it.next();
+}
+```
+
+## 해싱과 해시함수
+
+해싱이란 해시함수를 이용해서 데이터를 해시테이블에 저장하고 검색하는 기법을 말한다. 해시함수는 데이터가 저장되어 있는 곳을 알려 주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. 다시말해 저장할 데이터의 키를 해시함수에 넣으면 배열의 한 요소를 얻게 되고, 다시 그곳에 연결되어 있는 링크드 리스트에 저장하게 된다. 
+
+>해싱기법 흐름  
+>검색하고자 하는 값의 키로 해시함수 호출  
+>해시함수의 계산결과인 **해시코드**를 이용해서 해당 값이 저장되어 있는 링크드 리스트를 찾는다.  
+>링크드 리스트에서 검색한 키와 일치하는 데이터를 찾는다.  
+
+HashMap과 같이 해실을 구현한 컬렉션 클래스에서는 Object클래스에 저으이된 hashCode()를 해시함수로 사용한다. Object클래스에 정의된 hashCode()는 객체의 주소를 이용하는 알고리즘으로 해시코드를 만들어 내기 때문에 **모든 객체에 대해 hashCode()를 호출한 결과가 서로 유일하다.** 
+
+## TreeMap
+
+TreeMap은 이진 검색트리의 형태로 Key와 Value의 쌍으로 이루어진 데이터를 저장한다. 검색과 정렬에 적합한 컬렉션이지만 검색성능은 HashMap이 TreeMap보다 더 뛰어나다 다만, 범위검색이나 정렬이 필요한 경우에 TreeMap을 사용할 것을 권장한다. 
+
+## Properties
+Properties는 Hashtable을 상속받아 구현한 것이며, 다른 점은 Key와 Value가 Object로 구성된 것이 아닌 String으로 구성이 된다. 주로 애플리케이션의 환경설정과 관련된 속성을 저장하는데 사용되며 데이터를 파일로부터 읽고 쓰는 편리한 기능을 제공한다. 
+
+**setProperty()**는 기존에 같은 키로 저장된 값이 있는 경우 그 값을 Object타입으로 반환하며, 그렇지 않을 떄는 null을 반환한다.
+```java
+Properties prop = new Properties();
+prop.setProperty("key", "value1");
+Object obj = prop.setProperty("key", "value2");
+```
+
+**getProperty()**는 Properties에 저장된 값을 읽어어는 일을 하는데, 만일 읽어오려는 키가 존재하지 않으면 지정된 기본 값을 반환한다.
+```java
+String path = prop.getProperty("path");
+String path = prop.getProperty("path", "/default/path/");
+```
+
+**list메스드**를 이용하면 Properties에 저장된 모든 데이터를 화면 또는 파일에 출력할 수 있다.
+```java
+prop.list(PrintStream out);
+prop.list(PrintWriter out);
+```
+
+## Collections
+Arrays가 배열과 관련된 메서드를 제공하는 것처럼, Collections는 컬렉션과 관련된 메스드를 제공한다. 주요한 키워드는 아래와 같다. 
+
+**컬렉션의 동기화**
+멀티 쓰레드 프로그래밍에서는 하나의 객체를 여러 쓰레드가 동시에 접근할 수 있기 때문에 데이터의 일관성을 유지하기 위해서는 공유되는 객체에 동기화가 필요하다.
+```java
+static Collection synchronizedCollection(Collection c)
+static List synchronizedList(List list)
+static Set synchronizedSet(Set set)
+static Map synchronizedMap(Map map)
+static SortedSet synchronizedSortedSet(SortedSet s)
+static SortedMap synchronizedSortedMap(SortedMap m)
+
+// 사용방법
+List syncList = Collections.synchronizedList(New ArrayList(...));
+```
+
+## 컬렉션 클래스 정리 & 요약
+
+|컬렉션|특  징|
+|----|-----|
+|ArrayList|배열기반, 데이터의 추가와 삭제에 불리, 순차적인 추가/삭제는 제일 빠름. 임의의 요소에 대한 접근성이 뛰어남|
+|LinkedList|연결기반, 데이터의추가와 삭제에 유리. 임의의 요소에 대한 접근성이 좋지 않음|
+|HashMap|배열과 연결이 결합된 형태. 추가, 삭제, 검색, 접근성이 모두 뛰어남|
+|TreeMap|연결기반, 정렬과 검색에 적합. 검색 성능은 HashMap보다 떨어짐|
+|Statck|Vector를 상속받아 구현(LIFO)|
+|Queue|LinkedList가 Queue인터페이스를 구현(FIFO)|
+|Properties|Hashtable을 상속받아 구현(String, String)|
+|HashSet|HashMap을 이용해서 구현|
+|TreeSet|TreeMap을 이용해서 구현
+|LinkedHashMap|HashMap과 HashSet에 저장순서유지기능을 추가|
+|LinkedHashSet|HashMap과 HashSet에 저장순서유지기능을 추가|
 
 
 
