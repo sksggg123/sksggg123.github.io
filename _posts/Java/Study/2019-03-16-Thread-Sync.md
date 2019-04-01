@@ -101,9 +101,8 @@ public synchronized void A() {
 
 public void A() {
     // 특정한 영역을 임계 영역으로 지정
-    synchronized(객체의 참조변수) {
+    synchronized(객체의 참조변수) {...}
 
-    }
 }
 ```
 
@@ -233,6 +232,7 @@ aThread.signal();   // a 쓰레드 lock 획득 시키기
 <script src="https://gist.github.com/sksggg123/0124857d983d8d6a6456efc58122d827.js"></script>
 
 #### [출력결과]
+
 ```java
 [상품] 을 1개 입고 되었습니다. 남은수량: 6
 [상품] 을 2개 구매하였습니다. 남은수량: 4
@@ -257,6 +257,7 @@ aThread.signal();   // a 쓰레드 lock 획득 시키기
 ```
 
 Warehouse클래스의 buy메서드의 임계영역을 블럭으로 설정하였고 add메서드 자체에 임계영역을 설정하였다. 동기화 체크를 추가한 이후 더이상 재고가 2개일때 판매를 안하는 현상은 사라지게 된다. 하지만 여기서 문제가 있다. 재고가 구매하려는 제품보다 2개가 적을 시 재고가 들어올때까지 lock을 반납하지 않을 경우이다. (아래 소스는 일부로 lock반납을 하지 않게 하기 위해 추가 함.) 
+
 ```java
 while(getQuantity(product) < num) {  // 쓰레드 lock 점유를 높이기 위해 추가
     System.out.println("재고가 부족합니다. 물량 입고되면 다시 시도해 주세요. 현재수량 : " + products.get(product));
