@@ -103,7 +103,8 @@ analytics:
 # Site Author
 author:
   name             : "ByeongYun Kwon"
-  avatar           : "/assets/images/github_profile.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  #avatar           : "/assets/images/github_profile.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/K.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : # "I am an amazing person."
   location         : # "Somewhere"
   email            : "sksggg123@gmail.com"
