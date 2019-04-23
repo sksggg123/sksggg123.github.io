@@ -23,43 +23,66 @@ sitemap:
     priority: 1.0
 ---
 
+Front-end (Vue) 부터 Back-end (Springboot) 공부차원에서 작성 중입니다.  
+추가로 Restful API 공부할 예정이며, JPA를 사용하여 데이터 관리까지!
 
-1. SpringBoot 생성 후 초기 디렉토리 구조  
-![스프링부트 그래드 초기프로젝트 구조](/assets/images/blog/springBoot_Vue/springboot_gradle_init_directory.png)
+## 기본이 되는 Back-end 프로젝트 먼저 만들어보자.
+프로젝트는 Springboot + gradle로 만들자 만들게 되면 아래와 같은 디렉토리 구조의 Back-end를 갖게 된다.  
+![스프링부트 그래들 초기프로젝트 구조](/assets/images/blog/springBoot_Vue/springboot_gradle_init_directory.png)
 
-2. SpringBoot 생성 후 Controller 생성  
-![스프링부트 그래드 초기프로젝트 구조](/assets/images/blog/springBoot_Vue/springboot_gradle_controller.png)
+그래도 helloworld는 봐야 제대로 프로젝트를 구성했다는 느낌이 있기에 Controller를 만들어 서버를 한번 띄워보자.  
+![Controller 추가](/assets/images/blog/springBoot_Vue/springboot_gradle_controller.png)
+```java
+package com.sksggg123.blog.bootvue.controller;
 
--> Run하여 localhost:8080/main 테스트 해보기
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-3. Vue 프로젝트 추가하기
-```bash
-➜  boot-vue git:(master) ✗ vue init webpack-simple frontend
+@RestController
+public class ContentListController {
 
-? Project name frontend
-? Project description A Vue.js project
-? Author 권병윤 <sksggg123@gmail.com>
-? License MIT
-? Use sass? No
-
-   vue-cli · Generated "frontend".
-
-   To get started:
-   
-     cd frontend
-     npm install
-     npm run dev
+    @RequestMapping(value = "/main")
+    public String main() {
+        return "Hello Wolrd";
+    }
+}
 ```
 
-4. Vue dependencies install
-``` bash
-# install dependencies
-npm install
-```
-![스프링부트 vue 접속](/assets/images/blog/springBoot_Vue/springboot_vue init.png)  
-
-5. Vue run!
+## 얼굴인 Front-end 프로젝트를 만들어보자.
+npm이 설치되어있다는 가정하에 아래의 command를 수행하면 vue를 위에서 만들 Back-end 프로젝트에 추가시킬수 있다.  
 ```bash
-# serve with hot reload at localhost:8080
-npm run dev
-![스프링부트 vue 디렉토리 구조 접속](/assets/images/blog/springBoot_Vue/springboot_vue_init_directory.png)
+> vue init webpack <directoryName>
+```
+위의 명령어를 통해 현재 디렉토리에 vue프로젝트를 초기화 시키고 생성된 vue디렉토리로 진입하여 아래의 명령어를 수행한다. (나는 Vue의 프로젝트 이름을 frontend로 초기화 시킴)
+```bash
+> cd <directoryName>
+> npm install
+```
+위의 명령어는 초기화한 vue 디렉토리 내부에 package.json에 정의되어있는 의존성 라이브러리를 설치하는 과정이다. 이로써 vue를 사용할 준비는 완료되었다. 아래의 명령어를 통해 vue서버를 띄워보자.
+```bash
+> npm run dev
+```
+위의 명령어를 통해 vue서버가 뜨게된다. 참고로 위의 절차대로 한번에 쭉 진행하게 될 경우 기존의 springboot서버가 8080 port를 선점하고 있기때문에 vue 서버는 8081로 띄워지게 된다. 우선 vue 화면이 정상적으로 보여지는지 http://localhost:8081 로 접속을 해보자. 보여지게 된다면 vue도 구현할 준비가 완료가 된 것이다.  
+
+![스프링부트 vue 디렉토리 구조](/assets/images/blog/springBoot_Vue/springboot_vue_init_directory.png)
+
+## Back-end (springboot)와 Front-end (Vue)를 연동해보자.
+지금까지는 springboot는 8080, vue는 8081으로 서버를 띄워 사용하는 상태이다. 이 상태로 개발을 한다면 서버구조가 웹서버 -> 와스서버의 구조와 같은 기분이다. 하나로 합쳐서 하나의 port로 접속해보자.  
+
+Vue의 config > index.js 파일을 열어보면 아래와 같은 형태의 소스가 있다. 소스를 아래처럼 아주살짝 수정을 해야지만 된다. 기존에 index.html을 바라보던 곳을 springboot의 index.html을 바라보게 설정을 해주면 된다. (springboot에 index.html이 없으면 만들어주면 된다.)
+```java
+// index: path.resolve(__dirname, '../dist/index.html'),
+index: path.resolve(__dirname, '../../src/main/resources/static/index.html'),
+
+// Paths
+// assetsRoot: path.resolve(__dirname, '../dist'),
+assetsRoot: path.resolve(__dirname, '../../src/main/resources/static'),
+```
+위와 같이 설정을 하고 springboot를 재실행 시켜도 적용이 되진 않는다. 필히 vue프로젝트를 build를 한번 수행시켜야지 된다. 아래 명령어를 통해 vue를 build해보자.
+```bash
+> cd frontend
+> npm run build
+```
+build가 끝났으면 springboot의 indext.html 파일로 가보면 한줄로 소스코드가 생긴것을 확인할 수 있다. 이제 Re Run을 통해 Springboot를 재실행 해보자. 그리고 http://localhost:8080 으로 접속하여 아래의 Vue화면을 보게된다면 연동까지 마무리 된거다. 
+
+![스프링부트 vue 접속](/assets/images/blog/springBoot_Vue/springboot_vue_init.png)
