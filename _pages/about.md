@@ -38,7 +38,7 @@ toc: true
   * Tech Stack: Java, Maven, Jsp, JavaScript, jQuery, Oracle, MyBatis Linux, ShellScript
   * VCS: Jenkins, SVN
   * Solution: Acecount(통계/분석), Livere(SNS), Biztalk(알림톡), Eai I/F, IBM ETL(데이터허브 - 관제)
-  * Core Dev: 휴면처리, Biztalk(알림톡), Weblogic WAS Instance분리
+  * Core Dev: 휴면처리, Biztalk(알림톡), Weblogic WAS Instance분리, Bot 대응
 
 ## 2018/10 ~ : [{출퇴근길 개발 읽기}](https://www.facebook.com/devCommuter/) (운영 및 개발 중) 
 
