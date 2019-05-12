@@ -263,7 +263,6 @@ n 개의 원소를 가진 배열을 정렬할 때, 계속해서 바꾸는 것이
 [https://github.com/JaeYeopHan/Interview_Question_for_Beginner](https://github.com/JaeYeopHan/Interview_Question_for_Beginner)  
 [https://github.com/WeareSoft/tech-interview/blob/master/contents/network.md#osi-7%EA%B3%84%EC%B8%B5](https://github.com/WeareSoft/tech-interview/blob/master/contents/network.md#osi-7%EA%B3%84%EC%B8%B5)  
 [http://tcpschool.com/java/java_intro_java8](http://tcpschool.com/java/java_intro_java8)  
-[https://m.blog.naver.com/PostView.nhn?blogId=acornedu&logNo=221030114195&proxyReferer=https%3A%2F%2Fwww.google.com%2F](https://m.blog.naver.com/PostView.nhn?blogId=acornedu&logNo=221030114195&proxyReferer=https%3A%2F%2Fwww.google.com%2F)  
 [https://palpit.tistory.com/130](https://palpit.tistory.com/130)  
 [https://www.youtube.com/watch?v=aOP81IhPOmw](https://www.youtube.com/watch?v=aOP81IhPOmw)  
 [https://hoonmaro.tistory.com/19](https://hoonmaro.tistory.com/19)
