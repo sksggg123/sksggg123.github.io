@@ -46,6 +46,9 @@ java와 os 사이에서 중개자 역할을 수행하며 바이트코드(.class)
 **Heap Area** : JVM이 관리하는 프로그램 상에서 데이터를 저장하기 위해 런타임 시 동적으로 할당하여 사용하는 영역이다.  
 **Stack Area** : 각 쓰레드마다 고유한 영역, 기본(원시)타입 변수는 스택 영역에 직접 값을 가진다. 참조타임 변수는 힙 영역이나 메소드 영역의 객체 주소를 가진다.  
 
+### HotSpot JVM
+Sun Microsystem사의 Java 엔진 이름이다. Java VM의 엔진은 다양하지만 크게 HotSpot(Sun/Oracle), J9(IBM), JRocket(Oracle) 정도가 기업용자바 환경에서 주로 사용되는 것들이다. JRocket은 서버쪽 성능개선에 집중된 것으로 HostSpot에 그 핵심기능이 옮겨져있기에 현재 대새는 Oracle Hotspot이다. HotSpot은 오픈소스 자바 프로젝트인 OpenJDK의 JVM엔진이기도 하다.
+
 ### Interpreter
 javac로 컴파일한 바이트코드를 JVM을 통해 해석할때 필요하며 한줄단위로 읽는다. 이로인해 속도가 느리다는 단점이 있다.
 
