@@ -200,7 +200,14 @@ API연동을 지원합니다.
 ### HA 구성
 고가용성 솔루션을 이용하면, 각 시스템 간에 공유 디스크를 중심으로 집단화 하여 클러스터로 엮어지게 만들 수 있다. 동시에 다수의 시스템을 클러스터로 연결할 수 있지만 주로 2개의 서버를 연결하는 방식을 많이 사용한다. 만약 클러스터로 묶인 2개의 서버 중 1대의 서버에서 장애가 발생할 경우, 다른 서버가 즉시 그 업무를 대신 수행하므로, 시스템 장애를 불과 수 초에서 수 분 안에 복구할 수 있다.  
 **데이터 복제 기능** : 서버 중 1번 서버가 장애가 발생시, 2번 서버가 대상 서비스를 바로 서비스를 하기 위해서는 양쪽의 데이터는 항상 100% 동일 해야 하는 무결성을 보장 해야 한다.  
-**장애 감시 기능** : 1번 서버는 서비스 운영을 맞게 되며, 2번 서버는 1번 서버가 장애 발생시 서비스를 운영하기 위한 대기 생태로 구성이 된다. 이러한 구성은 Active – Stand By HA 구성이라고 한다.
+**장애 감시 기능** : 1번 서버는 서비스 운영을 맞게 되며, 2번 서버는 1번 서버가 장애 발생시 서비스를 운영하기 위한 대기 생태로 구성이 된다. 이러한 구성은 Active – Stand By HA 구성이라고 한다.  
+
+### SLB(Server Load Balancer)
+서버부하분산 방법이며, 여러대의 서버를 한대의 서버처럼 사용할 수 있게해준다. 하나의 서버가 이슈로인해 중단이 생길경우 나머지 서버가 대응 할 수 있는 구조이다.  
+**Round Robin** : Real Server로 session을 순차적으로 만들어 준다. 현재 각 서버의 연결된 세션수와 상관없이 순차적으로 각 서버에 전달해주기 때문에 5:5로 균등하게 분배할 수 있다. 하지만 경로보장이 되지 않는 문제가 있다.  
+**Least Connection** : Real Server의 Open 세션 수를 고려한 다음, 가장 적은수의 open session을 가진 Real Server로 session을 맺어주는 방식. 거의 5:5로 분산이 가능하지면 경로보장이 되지않는다.  
+**Response Time** : 각 Real Server들이 서로 상이한 resource와 connectino에 부수되는 시간과 데이터 양이 서로 다른 환경에서 사용할 수 있다. 알테온이 서버와 통신을 하면서 그 응답시간에 대한 학습을 통하여 응답시간이 빠른 쪽으로 많은 세션을 보내주고 응답이 느린쪽으로 세션을 적게 보내는 방식.  
+**Hash** : hashing algorithm을 사용한 밸런싱방법이며, 동일한 사용자는 동일한 값을 받기떄문에 경로 보장이되어 서버에 밸런싱이 되는 기법이다.    
 
 ### InnoDB
 MySQL을 위한 데이터베이스 엔진이며, MySQL AB가 배포하는 모든 바이너리에 내장되어 있다. MySQL과 사용할 수있는 다른 데이터베이스 엔진에 대한 개선 사항으로 PostgreSQL을 닮은 ACID 호환 트랜잭션에 대응하고 있는 것이 있다. 또한 외래 키(FK)도 지원하고 있다. (이것을 선언적 참조 무결성이라 한다.)
@@ -277,4 +284,5 @@ n 개의 원소를 가진 배열을 정렬할 때, 계속해서 바꾸는 것이
 [https://palpit.tistory.com/130](https://palpit.tistory.com/130)  
 [https://www.youtube.com/watch?v=aOP81IhPOmw](https://www.youtube.com/watch?v=aOP81IhPOmw)  
 [https://hoonmaro.tistory.com/19](https://hoonmaro.tistory.com/19)
-[https://www.sharedit.co.kr/posts/53](https://www.sharedit.co.kr/posts/53)
+[https://www.sharedit.co.kr/posts/53](https://www.sharedit.co.kr/posts/53)  
+[https://mani4u.tistory.com/203](https://mani4u.tistory.com/203)  
