@@ -161,6 +161,56 @@ public class FunctionMethod {
 }
 ```
 
+## 함수형 인터페이스(Functional Interface)
+람다식은 메서드와 동등하지 않고 **익명 클래스**의 객체와 동등하다.  
+```java
+(int a, int b) -> a > b ? a : b
 
+
+
+
+new Object() {
+    int max(int a, int b) {
+        return a > b ? a : b;
+    }
+}
+```
+
+실제 사용예는 아래와 같다.
+```java
+public class FunctionalInterfaceEx {
+
+    public static void main(String[] args) {
+
+        // 익명 클래스
+        MyFunction f1 = new MyFunction() {
+            @Override
+            public int max(int a, int b) {
+                return a > b ? a : b;
+            }
+        };
+        System.out.println("익명 클래스 : " + f1.max(10, 20));
+
+        // 람다식
+        MyFunction f2 = (int a, int b) -> a > b ? a : b;
+        System.out.println("람다식 : " + f2.max(10, 20));
+    }
+
+    interface MyFunction {
+        public abstract int max(int a, int b);
+    }
+}
+```
+이처럼 MyFunction인터페이스를 구현한 익명 객체를 람다식으로 대체가 가능한 이유는, 람다식도 실제로는 익명 객체이고, MyFunction인터페이스를 구현한 익명 객체의 메서드 max()와 람다식의 매개변수의 타입과 개수 그리고 반환값이 일치하기 때문이다.  
+
+참고로 람다식을 다루기 위한 인터페이스를 **함수형 인터페이스** 라고 부른다. 설정은 아래와 같이 할 수 있다.
+>@FunctionalInterface을 붙이면 컴파일러가 함수형 인터페이스를 올바르게 정의하였는지 확인해준다.  
+
+```java
+@FunctionalInterface
+interface MyFunction {
+    public abstract int max(int a, int b);
+}
+```
 
 #### 위의 모든 정리내용은 자바의 정석을 공부하며 복습차 정리한 내용입니다. 
