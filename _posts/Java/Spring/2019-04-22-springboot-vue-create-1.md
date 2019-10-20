@@ -52,6 +52,28 @@ npm이 설치되어있다는 가정하에 아래의 command를 수행하면 vue�
 ```bash
 > vue init webpack <directoryName>
 ```
+```log
+[ 설치 Log ]
+gwonbyeong-yun@gwonbyeong-yun-ui-MacBook-Pro  ~/git/dev/locker  vue init webpack frontend                                                                                                                     ✔  10015  21:11:54
+
+? Project name frontend
+? Project description A Vue.js project
+? Author 권병윤 <sksggg123@gmail.com>
+? Vue build standalone
+? Install vue-router? Yes
+? Use ESLint to lint your code? Yes
+? Pick an ESLint preset Standard
+? Set up unit tests Yes
+? Pick a test runner jest
+? Setup e2e tests with Nightwatch? Yes
+? Should we run `npm install` for you after the project has been created? (recommended) npm
+
+   vue-cli · Generated "frontend".
+
+
+# Installing project dependencies ...
+```
+
 위의 명령어를 통해 현재 디렉토리에 vue프로젝트를 초기화 시키고 생성된 vue디렉토리로 진입하여 아래의 명령어를 수행한다. (나는 Vue의 프로젝트 이름을 frontend로 초기화 시킴)
 ```bash
 > cd <directoryName>
