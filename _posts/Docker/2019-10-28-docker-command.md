@@ -67,10 +67,13 @@ docker [명령어] [옵션]
 ```bash
 # nginx 컨테이너 실행
 > docker run --rm -d -p 7777:80 nginx
+
 # 실행중인 컨테이너 프로세스 확인
 > docker ps -a
+
 CONTAINER ID    IMAGE   COMMAND                  CREATED             STATUS              PORTS                  NAMES
 abc7f4554813    nginx   "nginx -g 'daemon of…"   4 seconds ago       Up 3 seconds        0.0.0.0:7777->80/tcp   festive_perlman
+
 # 실행중인 컨테이너 중지
 > docker stop abc7f4554813
 ```
@@ -82,6 +85,7 @@ abc7f4554813    nginx   "nginx -g 'daemon of…"   4 seconds ago       Up 3 seco
 ```bash
 # 실행중인 컨테이너 프로세스 확인
 > docker ps -a
+
 CONTAINER ID    IMAGE   COMMAND                  CREATED             STATUS                     PORTS                   NAMES
 abc7f4554813    nginx   "nginx -g 'daemon of…"   4 seconds ago       Up 3 seconds               0.0.0.0:7777->80/tcp    festive_perlman
 cc28ffe977e     nginx   "nginx -g 'daemon of…"   3 minutes ago       Exited (128) 2 minutes ago                         angry_antonelli
@@ -90,3 +94,54 @@ cc28ffe977e     nginx   "nginx -g 'daemon of…"   3 minutes ago       Exited (1
 ```
 
 컨테이너 삭제 방법으로 rm을 삭용하면 된다. **-f** 옵션 없이 rm만 사용할 경우 컨테이너가 중지된 상태에서만 가능하며 중지가 안된 run 상태에서 바로 삭제하기 위해서는 **rm -f** 를 통해 삭제할 수 있다.  
+
+## **pull** 명령어
+```bash
+> docker pull sksggg123/simple-nginx
+
+> docker images
+
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+sksggg123/simple-nginx   latest              8ab10d568e53        11 minutes ago      126MB
+```
+
+```docker pull <imageName>```을 통해 docker hub에 있는 이미지들을 다운받을 수 있다. 다운받은 뒤 ```docker images```를 통해 다운 받은 이미지 목록을 확인해보면 된다. 
+
+## **rmi** 명령어
+```bash
+> docker rmi sksggg123/simple-nginx
+```
+
+```docker images```명령어를 통해 현재 다운받은 이미지들을 확인하여, 삭제하고자 하는 이미지 이름을 넣어 ```docker rmi <imageName>```을 통해 삭제할 수 있다.
+
+## **logs** 명령어
+```bash
+# 백그라운드로 컨테이너 실행
+> docker run --rm -d -p 7777:80 sksggg123/simple-nginx:latest
+
+# 로그출력을 위해 컨테이너 ID 체크
+> docker ps -a                                      
+
+CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                  NAMES
+0fbf7e2ec72e        sksggg123/simple-nginx:latest   "nginx -g 'daemon of…"   4 seconds ago       Up 3 seconds        0.0.0.0:7777->80/tcp   elegant_swart
+
+# 로그출력 (기본)
+> docker logs 0fbf7e2ec72e
+```
+
+```docker logs <컨테이너ID>```를 통해 로그를 출력 할 수 있으며, 로그 출력 시 사용 가능한 옵션은 아래 2가지가 있다.  
+1. **-f** :  ```docker logs -f <컨테이너ID>```의 경우 실시간으로 출력되는 log의 내용을 확인
+2. **--taill <출력숫자>** : ```docker logs --tail 5```의 경우 마지막의 5줄까지 적재된 로그를 출력
+
+## **exec** 명령어
+```bash
+> docker exec 0fbf7e2ec72e ls
+```
+
+```docker exec <컨테이너ID> <명령어>```를 통해 **실행중인** 컨테이너에 명령어를 사용할 수 있다. exec 멸영어에 추가로 알아두어야 하는것이 2가지가 있다.  
+**첫번째**로는 ```docker exec -it <컨테이너ID> bash```를 통해 실행중인 컨테이너에 접속할 수 있다.  
+**두번째**로는 ```docker run -it <이미지이름> bash```와의 차이이다. ```exec```와 run의 차이로는 exec의 경우 **실행중인** 컨테이너에 접속하는 것이며 ```run```의 경우 아직 실행시키지 않은 컨테이너에 접속하는 것을 의미한다.  
+
+> 참고!  
+> ```run```을 사용했던 것은 build 된 image에 추가적인 플러그인 설치 or 고정적인 설정 변경을 하여 image의 버전을 up할 경우 사용을 했다. 아래에 정리할 image build와 commit에 대해 조금 더 다뤄볼 예정이다.
+
