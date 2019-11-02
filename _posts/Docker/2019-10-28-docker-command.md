@@ -203,6 +203,11 @@ CONTAINER ID        IMAGE                           COMMAND                  CRE
 
 # 이미지 빌드하기
 > docker build -t test_docker_image .
+
+# 생성된 image 목록
+> docker images
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+test_docker_image       latest              8ab10d568e53        3 days ago          126MB
 ```
 
 ```docker build -t <빌드할이미지이름> <경로>```의 명령어를 통해 이미지를 빌드(생성)할 수 있다. dockerfile에 빌드할 이미지에 관련된 설정을 한 뒤 해당 명령어를 통해 빌드를 하면 된다.  
