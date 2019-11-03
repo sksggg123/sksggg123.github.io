@@ -212,3 +212,8 @@ test_docker_image       latest              8ab10d568e53        3 days ago      
 
 ```docker build -t <빌드할이미지이름> <경로>```의 명령어를 통해 이미지를 빌드(생성)할 수 있다. dockerfile에 빌드할 이미지에 관련된 설정을 한 뒤 해당 명령어를 통해 빌드를 하면 된다.  
 다른 경로에 있는 dockerfile을 읽을 경우에는 옵션을 바꿔주어야 한다. ```docker build -f <빌드할이미지이름> <dockerfile경로>```
+
+## Volume 을 통한 디렉토리 마운트
+```bash
+> docker run --rm -d -p 7777:80 -v <디렉토리경로> <이미지이름> 
+```
