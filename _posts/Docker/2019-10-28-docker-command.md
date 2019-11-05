@@ -131,8 +131,8 @@ CONTAINER ID        IMAGE                           COMMAND                  CRE
 ```
 
 ```docker logs <컨테이너ID>```를 통해 로그를 출력 할 수 있으며, 로그 출력 시 사용 가능한 옵션은 아래 2가지가 있다.  
-1. **-f** :  ```docker logs -f <컨테이너ID>```의 경우 실시간으로 출력되는 log의 내용을 확인
-2. **--taill <출력숫자>** : ```docker logs --tail 5```의 경우 마지막의 5줄까지 적재된 로그를 출력
+1. ```docker logs -f <컨테이너ID>```의 경우 실시간으로 출력되는 log의 내용을 확인
+2. ```docker logs --tail 5```의 경우 마지막의 5줄까지 적재된 로그를 출력
 
 ## **exec** 명령어
 ```bash
