@@ -1,6 +1,6 @@
 ---
 layout: customize-posts
-title: Docker 정리
+title: 기초적인 Docker 명령어
 date: 2019-10-28
 last_modified_at: 2019-11-05
 description: "Docker 수업을 받고 잊지 않기 위해 정리하는 자료 입니다. 아주 기초이며 간단한 명령어 정리."
@@ -32,7 +32,7 @@ sitemap:
 ---
 <center><img src="/assets/images/blog/docker/docker.png" width="1200" height="800"></center>
 
-> 도커에 처음 명령어를 날려보며 정리하는 글..  
+> 처음으로 도커 명령어를 사용해보며 정리하는 글..  
 
 ## 기본 명령어
 ```bash
@@ -55,14 +55,14 @@ docker [명령어] [옵션]
 ```bash
 > docker run --rm -d -p 7777:80 nginx
 ```
-**--rm**과 **-d, -p** 옵션을 사용하여 **nginx** 컨테이너를 띄우는 명령어 이다.   
-**--rm**의 경우 docker stop을 통해 컨테이터를 중지시킬 경우 **자동으로 컨테이너가 삭제**가 되는 옵션  
-**-d**의 경우에는 컨테이너가 **백그라운드**로 수행되게 하는 옵션  
-**-p**의 경우에는 **외부포트:내부포트** 명시로 앞은 host의 port이며 뒤 는 컨테이너에 접근하는 port  
+**rm**과 **-d, -p** 옵션을 사용하여 **nginx** 컨테이너를 띄우는 명령어 이다.   
+**rm**의 경우 docker stop을 통해 컨테이터를 중지시킬 경우 **자동으로 컨테이너가 삭제**가 된다.  
+**-d**의 경우에는 daemon으로 도커 컨테이너가 **백그라운드**로 수행되게 하는 옵션이다.  
+-p의 경우에는 port설정으로 외부포트:내부포트 형식으로 앞은 host의 port이며, 뒤의 설정은 컨테이너에 접근되는 port이다.
 
 위의 명령어를 통해 컨테이너를 띄우게 될 경우 local환경 기준으로 http://localhost:7777 으로 접속을 하게 되면 내부의 nginx의 80port로 포워딩이 된다.  
 
-참고로 -d를 사용을 하게되면 nginx는 백그라운드로 수행이 되기에 접근하는 log를 바로 볼수가 없다. docker logs <Docker ID>를 통해 로그를 따로 확인을 해야한다. -d옵션을 주지 않을 경우 백그라운드에서 수행이 되지 않기에 log를 바로 출력을 해주게 된다.  
+참고로 -d를 사용을 하게되면 nginx는 백그라운드로 수행이 되기에 접근하는 log를 바로 볼수가 없으며, docker logs <Docker ID>를 통해 로그를 따로 확인을 해야한다. -d옵션을 주지 않을 경우 백그라운드에서 수행이 되지 않기에 log를 바로 출력을 해주게 된다.  
 
 ## **stop** 명령어
 ```bash
@@ -79,7 +79,7 @@ abc7f4554813    nginx   "nginx -g 'daemon of…"   4 seconds ago       Up 3 seco
 > docker stop abc7f4554813
 ```
 
-```docker ps -a```를 통해 현재 실행 or 중지된 상태의 컨테이너 목록과 상태를 확인하여 중지하고자하는 컨테이터의 ID를 확인한다. 확인 된 ID를 활용하여 컨테이너를 중지시키게 되면 STATUS의 값이 **Exited (0) 2 seconds ago**으로 상태변경이 이루어 진다. 이렇게 될 경우 단순 컨테이너가 종료된 것이지 삭제가 된 것이 아니며, ```docker start <DockerInfo>또는 docker restart <DockerInfo>```를 통해 재기동을 할 수 있다. (DockerInfo = DockerID, DockerName)
+```docker ps -a```를 통해 현재 실행 or 중지된 상태의 컨테이너 목록과 상태를 확인하여 중지하고자하는 컨테이터의 ID를 확인한다. 확인 된 ID를 활용하여 컨테이너를 중지시키게 되면 STATUS의 값이 **Up** 에서 **Exited (0) ~~ ago**으로 상태변경이 이루어 진다. 이렇게 될 경우 단순 컨테이너가 종료된 것이지 삭제가 된 것이 아니며, ```docker start <DockerInfo>또는 docker restart <DockerInfo>```를 통해 재기동을 할 수 있다. (DockerInfo = DockerID, DockerName)
 
 
 ## **rm** 명령어
@@ -106,7 +106,7 @@ REPOSITORY               TAG                 IMAGE ID            CREATED        
 sksggg123/simple-nginx   latest              8ab10d568e53        11 minutes ago      126MB
 ```
 
-```docker pull <imageName>```을 통해 docker hub에 있는 이미지들을 다운받을 수 있다. 다운받은 뒤 ```docker images```를 통해 다운 받은 이미지 목록을 확인해보면 된다. 
+```docker pull <imageName>```을 통해 docker hub에 있는 이미지들을 다운받을 수 있으며, 다운받은 이미지들은 ```docker images```를 통해 목록을 확인할 수 있다.  
 
 ## **rmi** 명령어
 ```bash
@@ -131,17 +131,18 @@ CONTAINER ID        IMAGE                           COMMAND                  CRE
 ```
 
 ```docker logs <컨테이너ID>```를 통해 로그를 출력 할 수 있으며, 로그 출력 시 사용 가능한 옵션은 아래 2가지가 있다.  
-1. ```docker logs -f <컨테이너ID>```의 경우 실시간으로 출력되는 log의 내용을 확인
-2. ```docker logs --tail 5```의 경우 마지막의 5줄까지 적재된 로그를 출력
+1. ```docker logs -f <컨테이너ID>```의 경우 실시간으로 출력되는 log의 내용을 확인할때 사용할 수 있다.
+2. ```docker logs --tail 5```의 경우 마지막의 5줄까지 적재된 로그를 출력한다. 
 
 ## **exec** 명령어
 ```bash
 > docker exec 0fbf7e2ec72e ls
 ```
 
-```docker exec <컨테이너ID> <명령어>```를 통해 **실행중인** 컨테이너에 명령어를 사용할 수 있다. exec 멸영어에 추가로 알아두어야 하는것이 2가지가 있다.  
-**첫번째**로는 ```docker exec -it <컨테이너ID> bash```를 통해 실행중인 컨테이너에 접속할 수 있다.  
-**두번째**로는 ```docker run -it <이미지이름> bash```와의 차이이다. ```exec```와 run의 차이로는 exec의 경우 **실행중인** 컨테이너에 접속하는 것이며 ```run```의 경우 아직 실행시키지 않은 컨테이너에 접속하는 것을 의미한다.  
+```docker exec <컨테이너ID> <명령어>```를 통해 **실행중인** 컨테이너에 명령어를 사용할 수 있다. exec 명령어에 추가로 알아두어야 하는것이 2가지가 있다.  
+**첫번째** ```docker exec -it <컨테이너ID> bash```  
+**두번째** ```docker run -it <이미지이름> bash```  
+```exec```와 ```run```의 차이로는 exec의 경우 **실행중인** 컨테이너에 접속하는 것이며 ```run```의 경우 아직 실행시키지 않은 컨테이너에 접속하는 것을 의미한다.  
 
 > 참고!  
 > ```run```을 사용했던 것은 build 된 image에 추가적인 플러그인 설치 or 고정적인 설정 변경을 하여 image의 버전을 up할 경우 사용을 했다. 아래에 정리할 image build와 commit에 대해 조금 더 다뤄볼 예정이다.
