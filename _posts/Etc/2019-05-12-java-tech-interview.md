@@ -138,6 +138,10 @@ interperter의 속도를 보안하기 위해 컴파일러이며, 인터프리터
 사용법은 간단하다 선언, set(), get(), remove()를 활용하여 사용한다. 단, 사용이 완료되었을 경우 ThreadLocal을 통해 선언한 변수는 remove()를 시켜주어야 한다. 그렇지 않으면 재사용되는 쓰레드에 의해 정확하지 않은 데이터가 사용될 수 있다.  
 또한, ThreadLocal은 사용자 인증정보 전파나 트랜잭션 컨텍스트 전파에 주로 사용이 된다.  
 
+### Java transient
+transient는 Serialize하는 과정에서 제외하려는 필드에 정의하면 데이터 전송할때 null로 전송이 된다.  
+개인정보와 같은 데이터를 제외할때 사용할 수 있다.
+
 ### HTTP
 **HTTP** : 비연결 구조로 사용자의 연결을 유지하지 않는 방식이다. 사용자 요청 -> 응답 -> 연결해제 되는 흐름이다. 특징은 주로 HTML문서를 주고 받는데 사용되며 80포트를 사용한다.  
 **HTTP 메서드** :  GET, PUT, POST, DELETE, PUSH, OPTIONS 등.. 이 있으며, GET은 Read, PUT은 Update, POST는 Insert, DELETE는 Delete
