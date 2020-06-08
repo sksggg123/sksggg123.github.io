@@ -12,7 +12,7 @@ layouts_gallery:
   - url: /assets/images/mm-layout-archive.png
     image_path: /assets/images/mm-layout-archive.png
     alt: "archive layout example"
-#last_modified_at: 2018-11-21T14:49:33-05:00
+last_modified_at: 2020-06-08T14:49:33-05:00
 toc: true
 ---
 
@@ -24,21 +24,31 @@ toc: true
 |Blog:|[https://sksggg123.github.io](https://sksggg123.github.io)  |
 |Github:| [https://github.com/sksggg123](https://github.com/sksggg123)|
 
-# < History >
+# History
 
-## 2015/08 ~ 2015/12: KTDS 국비교육수료
-팀프로젝트: 비콘을 활용한 출결관리 시스템  
-  * Tech Stack: Java, Maven, Jsp, JavaScript, jQuery, Mysql, MyBatis, Android
-  * VCS: SVN
-  * Module: Beacon
+## 2020.06.15 ~ 
+- KakaoCommerce 입사  
+- 2020.06.15 ~ : Back-End 포지션
 
-## 2015/12 ~ : 첫 입사 (재직 중)
-(2015.12.21 ~ ):  SQI소프트 입사  
-(2016.02.12 ~ ): 신라아이파크면세점 개발 및 유지보수    
-  * Tech Stack: Java, Maven, Jsp, JavaScript, jQuery, Oracle, MyBatis Linux, ShellScript
-  * VCS: Jenkins, SVN
-  * Solution: Acecount(통계/분석), Livere(SNS), Biztalk(알림톡), Eai I/F, IBM ETL(데이터허브 - 관제)
-  * Core Dev: 휴면처리, Biztalk(알림톡), Weblogic WAS Instance분리, Bot 대응, 제휴사 
+## 2015.12.21 ~ 2020.06.07
+- SQI소프트 입사  
+- 2016.02.12 ~ 2020.06.07 : 신라아이파크면세점 개발 및 유지보수   
+- 사용기술
+  - Tech Stack : Java, Maven, Jsp, JavaScript, jQuery, Oracle, MyBatis Linux, ShellScript
+  - VCS : Jenkins, SVN
+  - Solution : Acecount(통계/분석), Livere(SNS), Biztalk(알림톡), Eai I/F, IBM ETL(데이터허브 - 관제)
+  - Core Dev : 휴면처리, Biztalk(알림톡), Weblogic WAS Instance분리, Bot 대응, 제휴사 
+
+## 2015.08.06 ~ 2015.12.20
+- KTDS 국비지원 웹개발자 육성 교육
+- 2015.08.06 ~ 2015.12.20 : KTDS 국비지원 수료
+- 사용기술  
+  - Tech Stack : Java, Maven, Jsp, JavaScript, jQuery, Mysql, MyBatis, Android
+  - VCS : SVN
+  - Module : Beacon
+  - Core Dev : 비콘을 활용한 출결관리 시스템  
+
+# ETC
 
 ## 2018/10 ~ : [{출퇴근길 개발 읽기}](https://www.facebook.com/devCommuter/) (운영 및 개발 중) 
 
